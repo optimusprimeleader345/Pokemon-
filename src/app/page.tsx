@@ -37,7 +37,7 @@ export default function HomePage() {
   } = usePokemonList();
 
   const { toggleFavorite, isFavorite } = useFavorites();
-  const { selected, toggleCompare, clearCompare, isCompareSelected, canCompare } = useCompare();
+  const { selected, toggleCompare, clearCompare, isCompareSelected } = useCompare();
   const { recentlyViewed } = useRecentlyViewed();
   const [types, setTypes] = useState<PokemonTypeOption[]>([]);
 
