@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -120,7 +120,7 @@ function PokemonColumn({ pokemon }: { pokemon: PokemonDetail }) {
   );
 }
 
-export default function ComparePage() {
+function CompareContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const p1 = searchParams.get('p1');
@@ -133,7 +133,7 @@ export default function ComparePage() {
 
   useEffect(() => {
     if (!p1 || !p2) {
-      setError('Please select two Pok\u00e9mon to compare.');
+      setError('Please select two Pokémon to compare.');
       setLoading(false);
       return;
     }
@@ -152,7 +152,7 @@ export default function ComparePage() {
           setPokemon2(d2);
         }
       } catch {
-        if (!cancelled) setError('Failed to load Pok\u00e9mon for comparison.');
+        if (!cancelled) setError('Failed to load Pokémon for comparison.');
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -253,5 +253,23 @@ export default function ComparePage() {
         </div>
       )}
     </main>
+  );
+}
+
+export default function ComparePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex justify-center items-center min-h-[50vh]">
+          <div className="flex items-center gap-8">
+            <div className="w-40 h-52 rounded-2xl bg-gray-200 dark:bg-gray-700 animate-pulse" />
+            <span className="text-2xl font-bold text-gray-300">VS</span>
+            <div className="w-40 h-52 rounded-2xl bg-gray-200 dark:bg-gray-700 animate-pulse" />
+          </div>
+        </div>
+      }
+    >
+      <CompareContent />
+    </Suspense>
   );
 }
