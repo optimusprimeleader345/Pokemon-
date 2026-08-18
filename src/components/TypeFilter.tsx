@@ -5,11 +5,11 @@ import { typeColors } from '@/lib/typeColors';
 
 // Inline hex colors for the colored dot (since Tailwind bg classes don't work in <option> elements)
 const typeHexColors: Record<string, string> = {
-  normal: '#a8a29e', fire: '#fb923c', water: '#60a5fa', electric: '#facc15',
-  grass: '#4ade80', ice: '#22d3ee', fighting: '#f87171', poison: '#c084fc',
-  ground: '#fbbf24', flying: '#818cf8', psychic: '#f472b6', bug: '#a3e635',
-  rock: '#78716c', ghost: '#a78bfa', dragon: '#6366f1', dark: '#525252',
-  steel: '#94a3b8', fairy: '#f9a8d4',
+  normal: '#a8a29e', fire: '#f97316', water: '#3b82f6', electric: '#eab308',
+  grass: '#10b981', ice: '#06b6d4', fighting: '#dc2626', poison: '#9333ea',
+  ground: '#d97706', flying: '#38bdf8', psychic: '#d946ef', bug: '#84cc16',
+  rock: '#78716c', ghost: '#7c3aed', dragon: '#4f46e5', dark: '#525252',
+  steel: '#64748b', fairy: '#f472b6',
 };
 
 interface TypeFilterProps {
