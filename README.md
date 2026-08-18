@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ Pokémon Explorer
 
-## Getting Started
+A clean, modern, editorial-style Pokédex web application built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, and the public **PokéAPI**.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🌟 Key Features
+
+### 🎴 Core Functionality
+- **Responsive Card Grid**: Clean 4-column desktop, 2-column tablet, and 1-column mobile layout.
+- **Type-Based Color System**: Pastel background badges paired with high-contrast text and custom top accent borders corresponding to each Pokémon's primary type.
+- **Paginated Load More**: Append 20 Pokémon at a time seamlessly without replacing state.
+- **Exact Name Search**: Real-time search with a dedicated, user-friendly "Pokémon Not Found" state for 404 responses.
+- **Type Filter Dropdown**: Filter grid content by all 18 official Pokémon types (e.g., Fire, Water, Grass, Electric) with colored visual indicators.
+- **Detailed View Route**: Full page view at `/pokemon/[name]` featuring official high-res artwork, physical stats, abilities, first 10 moves, and animated stat bars.
+
+### 🚀 Bonus Features
+- **⚔️ Pokémon Comparison**: Select any 2 Pokémon directly from grid cards to compare their base stats side-by-side with color-coded comparison bars at `/compare`.
+- **🧬 Interactive Evolution Chain**: Visual, step-by-step evolution sequence on the detail page with branching support (e.g., Eevee).
+- **🕒 Recently Viewed Strip**: Persistent horizontal scrollable bar on the homepage showing your last 5 visited Pokémon.
+- **❤️ Favorites System**: Heart toggle on each card with `localStorage` persistence.
+- **📊 Multi-Field Sorting**: Sort grid by ID, Name (A-Z), Attack, Speed, or HP.
+- **🌙 Dark Mode Support**: Complete dark theme toggle with `localStorage` persistence and system preferences check.
+- **⌨️ Keyboard Accessibility**: Full focus rings and `Escape` key navigation back to the homepage.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **API**: [PokéAPI](https://pokeapi.co/) (REST API, no authentication required)
+
+---
+
+## 📁 Project Structure
+
+```
+pokemon-explorer/
+├── src/
+│   ├── app/
+│   │   ├── compare/
+│   │   │   └── page.tsx           # Side-by-side Pokémon comparison page
+│   │   ├── pokemon/
+│   │   │   └── [name]/
+│   │   │       ├── page.tsx       # Server component for fetching detail data
+│   │   │       └── DetailClient.tsx # Client detail UI (stats, evolution chain)
+│   │   ├── globals.css            # Tailwind directives & CSS variables
+│   │   ├── layout.tsx             # Root layout with dark mode support
+│   │   └── page.tsx               # Homepage grid, search, filters & controls
+│   ├── components/
+│   │   ├── CompareButton.tsx      # Floating bottom bar when 2 Pokémon are selected
+│   │   ├── DarkModeToggle.tsx     # Sun/Moon theme switcher
+│   │   ├── ErrorState.tsx         # User-friendly error message component
+│   │   ├── EvolutionChain.tsx     # Step-by-step evolution sequence
+│   │   ├── LoadingSkeleton.tsx    # Card shape skeleton loaders
+│   │   ├── PokemonCard.tsx        # Grid card item with badges & action triggers
+│   │   ├── PokemonGrid.tsx        # Responsive grid layout wrapper
+│   │   ├── RecentlyViewed.tsx     # Homepage recent visits carousel
+│   │   ├── SearchBar.tsx          # Input search bar with clear button
+│   │   ├── SortDropdown.tsx       # Multi-field sorting dropdown
+│   │   ├── StatBar.tsx            # Animated base stat progress bar
+│   │   └── TypeFilter.tsx         # Type selection dropdown with color dots
+│   ├── hooks/
+│   │   ├── useCompare.ts          # State management for comparison selection
+│   │   ├── useFavorites.ts        # LocalStorage synced favorites hook
+│   │   ├── usePokemonList.ts      # Core hook for pagination, filtering & sorting
+│   │   └── useRecentlyViewed.ts   # LocalStorage synced recent visits hook
+│   ├── lib/
+│   │   └── typeColors.ts          # Complete type-to-color mapping dictionary
+│   ├── services/
+│   │   └── pokemonApi.ts          # Centralized, typed PokéAPI fetch handlers
+│   └── types/
+│       └── pokemon.ts             # TypeScript interfaces for API & app state
+├── next.config.mjs                # Next.js configuration & image domains
+├── tailwind.config.ts             # Tailwind configuration & dark mode setup
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
 
-## Learn More
+- Node.js 18.x or later installed
+- npm or yarn
 
-To learn more about Next.js, take a look at the following resources:
+### Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/optimusprimeleader345/Pokemon-.git
+   cd Pokemon-/pokemon-explorer
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-## Deploy on Vercel
+3. **Run the development server**:
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Open in browser**:
+   Navigate to [http://localhost:3000](http://localhost:3000).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🧪 Build & Type Check
+
+To check for TypeScript or build errors:
+
+```bash
+npx tsc --noEmit
+npm run build
+```
+
+---
+
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
